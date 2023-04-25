@@ -14,6 +14,7 @@ const { productSocket } = require('./webSocket/productosWS.js');
 const { messageSocket } = require('./webSocket/mensajesWS.js');
 
 const { mainPage } = require('./pages/loadPages.js');
+const MemoryDao = require('./dao/usersMemory.js')
 
 const path = require ('path');
 
@@ -26,6 +27,7 @@ const { logger } = require('./config/loggerConf.js');
 
 
 const cluster = require('cluster');
+const { connect } = require('http2');
 const numCpus = require('os').cpus().length;
 
 if (config.m == 'CLUSTER' && cluster.isPrimary) {
@@ -137,6 +139,17 @@ if (config.m == 'CLUSTER' && cluster.isPrimary) {
             console.log(`Servidor http WebSocket escuchando en el puerto ${server.address().port}, proceso ${ID}, ${new Date().toISOString()}`);
         });
         server.on("error", error => logger.error(`Error en servidor ${error}`));
+        
+        // const memoryDao = new MemoryDao() 
+
+        // memoryDao.connect()
+        // .then(() => {
+        //     server.listen(config.p, () => {
+        //         console.log(`Servidor http WebSocket escuchando en el puerto ${server.address().port}, proceso ${ID}, ${new Date().toISOString()}`);
+        //     });
+        //     server.on("error", error => logger.error(`Error en servidor ${error}`));
+
+        // })
 
 }
 

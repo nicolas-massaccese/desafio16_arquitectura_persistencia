@@ -7,6 +7,7 @@ const mongoUser = process.env.MONGO_USER
 const mongoPass = process.env.MONGO_PASS
 const mongoDb = process.env.MONGO_DB
 const mongoUri = process.env.MONGO_URI
+const persistence = process.env.PERSISTENCE
 
 const a = 8050;
 const b = 8051;
@@ -34,5 +35,6 @@ module.exports = { mongoUser, mongoPass, mongoDb, mongoUri, config, a, b, c, d,
     PTH: process.execPath,
     ID: process.pid,
     FILE: process.cwd(),
+    persistence,
     
 };
